@@ -9,6 +9,12 @@ MAINTAINER Ruslan Korniichuk <ruslan.korniichuk@gmail.com>
 
 USER root
 
+# Change the adduser.conf file
+COPY adduser.conf /etc/adduser.conf
+
+# Change the login.defs file
+COPY login.defs /etc/login.defs
+
 # Change the login.html file
 COPY login.html /usr/local/share/jupyter/hub/templates/login.html 
 
