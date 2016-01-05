@@ -1,4 +1,4 @@
 jupyterhub:
-  image: korniichuk/jupyterhub-paad:0.1
+  image: korniichuk/jupyterhub-paad:0.2
   ports:
    - 7171:7171
