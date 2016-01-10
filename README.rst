@@ -5,6 +5,10 @@ Full description
 ================
 The `korniichuk/jupyterhub <https://hub.docker.com/r/korniichuk/jupyterhub/>`_ Docker image for the PAAD project.
 
+GitHub
+======
+The `korniichuk/jupyterhub-paad <https://github.com/korniichuk/jupyterhub-paad>`_ repo.
+
 Docker Hub
 ==========
 The `korniichuk/jupyterhub-paad <https://hub.docker.com/r/korniichuk/jupyterhub-paad/>`_ repo.
