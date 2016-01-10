@@ -1,7 +1,7 @@
 # Name: korniichuk/jupyterhub-paad
 # Short Description: JupyterHub for the PAAD project
 # Full Description: The korniichuk/jupyterhub Docker image for the PAAD project.
-# Version: 0.2a1
+# Version: 0.1a1
 
 FROM korniichuk/jupyterhub:0.1
 
