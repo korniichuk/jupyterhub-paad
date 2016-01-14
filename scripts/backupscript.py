@@ -13,25 +13,16 @@ from threading import Timer
 
 from fabric.api import local
 
-username = "" # Enter Docker Hub USERNAME <paad>
-password = "" # Enter Docker Hub user PASSWORD
-email = "" # Enter Docker Hub user EMAIL <paad.jupyterhub@gmail.com>
+docker_hub_username = "" # Enter Docker Hub USERNAME <paad>
+docker_hub_password = "" # Enter Docker Hub user PASSWORD
+docker_hub_email = "" # Enter Docker Hub user EMAIL <paad.jupyterhub@gmail.com>
 docker_hub_repo_name = "" # Enter Docker Hub repository name <jupyterhub>
 docker_container_name = "" # Enter Docker container name <all_jupyterhub_1>
 
 def backup():
     """Backup from running container to Docker Hub repository"""
 
-    def login():
-        """Automatic Docker login"""
-        
-        try:
-            local("docker login --username=%s --password=%s --email=%s" %
-                    (username, password, email))
-        except Exception:
-            pass
-
-    docker_hub_repo = username + '/' + docker_hub_repo_name            
+    docker_hub_repo = docker_hub_username + '/' + docker_hub_repo_name
     # Check Docker image id
     try:
         image_id = check_output("docker images -q %s" % docker_hub_repo,
@@ -54,8 +45,18 @@ def backup():
     try:
         local("docker push %s" % docker_hub_repo)
     except Exception:
-        login()
+        pass
 
+def login():
+    """Automatic Docker login"""
+
+    try:
+        local("docker login --username=%s --password=%s --email=%s" %
+                (docker_hub_username, docker_hub_password, docker_hub_email))
+    except Exception:
+        pass
+
+login()       
 while True:
     date_time_current = datetime.now()
     date_time_action = date_time_current + timedelta(hours=12, minutes=0,
