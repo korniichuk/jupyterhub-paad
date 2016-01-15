@@ -9,6 +9,13 @@ MAINTAINER Ruslan Korniichuk <ruslan.korniichuk@gmail.com>
 
 USER root
 
+# Retrieve new lists of packages
+ENV REFRESHED_PACKAGES_AT 2016–01–15
+RUN apt-get -qq update # -qq -- no output except for errors
+
+# Install emacs, mc, nano, ssh, sshfs, vim, wget
+RUN apt-get install -y emacs emacs-goodies-el emacs24-el mc nano ssh sshfs vim wget && apt-get clean
+
 # Change the adduser.conf file
 COPY adduser.conf /etc/adduser.conf
 
