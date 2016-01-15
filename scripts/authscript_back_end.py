@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""JupyterHub auth for the PAAD project
+"""JupyterHub back end auth script for the PAAD project
 Author: Ruslan Korniichuk <ruslan.korniichuk@gmail.com>
 
 """
@@ -15,6 +15,7 @@ from fabric.api import local
 
 host = "" # Enter host <172.20.60.12>
 port = "" # Enter port <9797>
+key = "" # Enter secret key
 
 @post("/api", method="POST")
 def api():
@@ -25,22 +26,21 @@ def api():
 
         try:
             output = check_output("grep %s /etc/shadow" % USERNAME, shell=True)
+            index = output.find(":")
+            character = output[index+1]
+            if character == '!':
+                return True
+            else:
+                return False
         except CalledProcessError:
-            pass
-        index = output.find(":")
-        character = output[index+1]
-        if character == '!':
-            return True
-        else:
-            return False
+            return None
 
     ACTION = None
     USERNAME = None
     EMAIL = None
     PASSWD = None
     TIMESTAMP = None
-    MD5 = None
-    key = "JupyterHub"
+    MD5 = None    
 
     ACTION = request.forms.get("ACTION")
     USERNAME = request.forms.get("USERNAME")
@@ -79,8 +79,10 @@ def api():
                     local("passwd -l %s" % USERNAME)
                 except Exception:
                     pass
-            else:
+            elif lock_check(USERNAME) == True:
                 pass # User already lock
+            elif lock_check(USERNAME) == None:
+                return "1;lock_check() error"
     elif ACTION == "ENABLE":
         # Check user
         try:
