@@ -3,19 +3,20 @@
 
 """JupyterHub front end auth script for the PAAD project
 Author: Ruslan Korniichuk <ruslan.korniichuk@gmail.com>
+Version: 0.1a1
 
 """
 
 import hashlib
 import time
-
+from crypt import crypt
 from urllib.parse import urlencode
 from urllib.request import urlopen
 
 key = "" # Enter secret key
-url = "" # Enter API URL <172.20.60.12:9797/api>
+url = "" # Enter API URL <http://172.20.60.12:9797/api>
 
-ACTION = "" # Choise action: ENABLE |DISABLE
+ACTION = "" # Choise action: ENABLE | DISABLE
 USERNAME = "" # Enter PAAD USERNAME
 EMAIL = "" # Enter PAAD user EMAIL
 PASSWD = "" # Enter PAAD user PASSWD
@@ -32,6 +33,7 @@ def request(url, params={}, timeout=5):
     return html.read()
 
 TIMESTAMP = time.time()
+PASSWD = crypt(PASSWD, key)
 text = key + str(USERNAME) + key + str(TIMESTAMP) + key + str(PASSWD) + \
        key + str(ACTION) + key + str(EMAIL) + key
 MD5 = hashlib.md5(text.encode()).hexdigest()
