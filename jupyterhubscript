@@ -1,0 +1,7 @@
+#! /bin/sh
+
+# Auth
+#screen -dmLS auth /notebooks/authscript_back_end.py
+
+# Start the JupyterHub
+jupyterhub --port 7171
