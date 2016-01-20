@@ -3,7 +3,7 @@
 
 """JupyterHub back end auth script for the PAAD project
 Author: Ruslan Korniichuk <ruslan.korniichuk@gmail.com>
-Version: 0.1a2
+Version: 0.2a1
 
 """
 
