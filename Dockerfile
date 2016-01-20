@@ -36,5 +36,8 @@ COPY logos/ig_logo_150x50px.png /usr/local/share/jupyter/hub/static/images/ig_lo
 COPY logos/us_plus_intibs_logo_81x50px.png /usr/local/share/jupyter/hub/static/images//us_plus_intibs_logo_81x50px.png
 COPY logos/efrr_logo_204x50px.png /usr/local/share/jupyter/hub/static/images/efrr_logo_204x50px.png
 
+# Expose a port
+EXPOSE 9797
+
 # Add the authscript_back_end.py file
 COPY scripts/authscript_back_end.py authscript_back_end.py
