@@ -16,11 +16,11 @@ RUN apt-get -qq update # -qq -- no output except for errors
 # Install emacs, mc, nano, screen, ssh, sshfs, vim, wget
 RUN apt-get install -y emacs emacs-goodies-el emacs24-el mc nano screen ssh sshfs vim wget && apt-get clean
 
-# Install bottle, fabric for Python 2
-RUN pip2 install bottle fabric
+# Install bottle, fabric, netifaces for Python 2
+RUN pip2 install bottle fabric netifaces
 
-# Install bottle for Python 3
-RUN pip3 install bottle
+# Install bottle, netifaces for Python 3
+RUN pip3 install bottle netifaces
 
 # Change the adduser.conf file
 COPY adduser.conf /etc/adduser.conf
