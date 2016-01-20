@@ -41,3 +41,6 @@ EXPOSE 9797
 
 # Add the authscript_back_end.py file
 COPY scripts/authscript_back_end.py authscript_back_end.py
+
+# Change the 'jupyterhubscript' file
+COPY jupyterhubscript jupyterhubscript
