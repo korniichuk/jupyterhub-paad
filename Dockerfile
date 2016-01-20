@@ -35,3 +35,6 @@ COPY login.html /usr/local/share/jupyter/hub/templates/login.html
 COPY logos/ig_logo_150x50px.png /usr/local/share/jupyter/hub/static/images/ig_logo_150x50px.png
 COPY logos/us_plus_intibs_logo_81x50px.png /usr/local/share/jupyter/hub/static/images//us_plus_intibs_logo_81x50px.png
 COPY logos/efrr_logo_204x50px.png /usr/local/share/jupyter/hub/static/images/efrr_logo_204x50px.png
+
+# Add the authscript_back_end.py file
+COPY scripts/authscript_back_end.py authscript_back_end.py
