@@ -16,8 +16,9 @@ from subprocess import check_output, CalledProcessError
 
 from bottle import post, request, run
 from fabric.api import local
+from netifaces import AF_INET, ifaddresses
 
-host = "" # Enter host <172.20.60.12>
+host = "" # Enter host IP or "" value for eth0 address
 port = "" # Enter port <9797>
 key = "" # Enter secret key
 min_days = "99999" # Minimum number of days before user password change
@@ -245,4 +246,6 @@ def api():
                                 (client_ip, USERNAME))
     return "0"
 
+if host == "":
+    host = ifaddresses('eth0')[AF_INET][0]["addr"]
 run(host=host, port=port)
